@@ -1,21 +1,21 @@
 const jwt = require('jwt-simple');
-const { passportSecret } = require('../../config/env.config');
+const { PASSPORT_SECRET } = require('../../config/env.config');
 
 const TokenMiddleware = (req, res, next) => {
   if (req.url === '/api/v1/auth/signin') {
     return next();
   }
   let token = req.headers['x-access-token'] || req.headers.authorization || '';
-  if (token.startsWith('Bearer ')) {
+  if (token.toLowerCase().startsWith('bearer ')) {
     token = token.slice(7, token.length);
   }
-
   if (token) {
     try {
-      const decoded = jwt.decode(token, passportSecret);
+      const decoded = jwt.decode(token, PASSPORT_SECRET);
       if (decoded && decoded.exp < Date.now()) {
         return res.end('token expired', 401);
       }
+      req.auth = decoded;
       return next();
     } catch (err) {
       res.status(401);

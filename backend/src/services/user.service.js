@@ -3,7 +3,8 @@ const { pool } = require('../../config/db.config');
 
 const saltRounds = 12;
 const pool2 = pool;
-const userService = {
+const pool3 = pool;
+const UserService = {
   async deleteUser(data) {
     return new Promise((resolve, reject) => {
       pool.connect((err, client, done) => {
@@ -42,7 +43,8 @@ const userService = {
             gender,
             department,
           } = data;
-          const text = 'INSERT INTO users( "firstName", "lastName", "email", "password", "address", "jobRole", "gender", "department") VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
+          const text =
+            'INSERT INTO users( "firstName", "lastName", "email", "password", "address", "jobRole", "gender", "department") VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
 
           bcrypt.hash(password, saltRounds).then(hash => {
             const values = [
@@ -59,7 +61,10 @@ const userService = {
             client
               .query(text, values)
               .then(res => {
-                resolve(res);
+                if (res.rows.length > 0) {
+                  resolve(res.rows[0]);
+                }
+                reject();
               })
               .catch(e => {
                 reject(e);
@@ -73,5 +78,30 @@ const userService = {
       });
     });
   },
+  async getUserById(userId) {
+    return new Promise((resolve, reject) => {
+      pool3.connect((err, client, done) => {
+        if (err) {
+          return err;
+        }
+        const text = 'SELECT * FROM users WHERE id=$1';
+        client
+          .query(text, [userId])
+          .then(res => {
+            if (res.rows.length > 0) {
+              resolve(res.rows[0]);
+            }
+            reject();
+          })
+          .catch(e => {
+            reject(e);
+          })
+          .finally(() => {
+            // done();
+          });
+        return done();
+      });
+    });
+  },
 };
-module.exports = userService;
+module.exports = { UserService };
