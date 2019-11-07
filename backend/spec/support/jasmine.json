@@ -1,0 +1,13 @@
+{
+  "spec_dir": "./../backend",
+  "spec_files": [
+    "src/routes/**/*[sS]pec.js",
+    "src/public/**/*[sS]pec.js",
+    "src/services/**/*[sS]pec.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}

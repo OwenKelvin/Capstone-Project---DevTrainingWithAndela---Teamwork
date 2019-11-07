@@ -1,0 +1,1 @@
+set DATABASE_URL=postgres://root:password@localhost:5432/teamwork;
