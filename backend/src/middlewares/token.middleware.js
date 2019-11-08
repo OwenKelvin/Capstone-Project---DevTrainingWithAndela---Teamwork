@@ -15,7 +15,7 @@ const TokenMiddleware = (req, res, next) => {
       if (decoded && decoded.exp < Date.now()) {
         return res.end('token expired', 401);
       }
-      req.auth = decoded;
+      req.auth = { ...decoded, id: decoded.sub };
       return next();
     } catch (err) {
       res.status(401);

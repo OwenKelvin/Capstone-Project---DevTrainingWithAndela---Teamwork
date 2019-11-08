@@ -43,8 +43,7 @@ const UserService = {
             gender,
             department,
           } = data;
-          const text =
-            'INSERT INTO users( "firstName", "lastName", "email", "password", "address", "jobRole", "gender", "department") VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
+          const text = 'INSERT INTO users( "firstName", "lastName", "email", "password", "address", "jobRole", "gender", "department") VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *';
 
           bcrypt.hash(password, saltRounds).then(hash => {
             const values = [
