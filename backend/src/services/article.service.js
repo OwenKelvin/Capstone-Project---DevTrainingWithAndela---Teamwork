@@ -28,6 +28,33 @@ const ArticleService = {
       });
     });
   },
+  async updateArticle(data, articleId) {
+    const { title, article } = data;
+    const values = [title, article, articleId];
+    return new Promise((resolve, reject) => {
+      const text = 'UPDATE articles SET "title" = $1, "article" = $2 WHERE "id"=$3 RETURNING *';
+      pool.connect((err, client, done) => {
+        if (err) {
+          reject(err);
+        }
+        client
+          .query(text, values)
+          .then(response => {
+            if (response.rows.length > 0) {
+              resolve(response.rows[0]);
+            } else {
+              reject();
+            }
+          })
+          .catch(err1 => {
+            reject(err1);
+          })
+          .finally(() => {
+            done();
+          });
+      });
+    });
+  },
 };
 
 module.exports = { ArticleService };
