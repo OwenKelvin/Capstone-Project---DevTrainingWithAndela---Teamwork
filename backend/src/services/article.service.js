@@ -55,6 +55,28 @@ const ArticleService = {
       });
     });
   },
+  async deleteArticle(articleId) {
+    const values = [articleId];
+    return new Promise((resolve, reject) => {
+      const text = 'DELETE FROM articles WHERE "id"=$1';
+      pool.connect((err, client, done) => {
+        if (err) {
+          reject(err);
+        }
+        client
+          .query(text, values)
+          .then(() => {
+            resolve();
+          })
+          .catch(err1 => {
+            reject(err1);
+          })
+          .finally(() => {
+            done();
+          });
+      });
+    });
+  },
 };
 
 module.exports = { ArticleService };

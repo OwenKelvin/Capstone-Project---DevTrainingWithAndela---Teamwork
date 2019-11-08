@@ -11,5 +11,6 @@ Router.post('/auth/create-user', AuthRoute.createUser);
 // Articles Routes
 Router.post('/articles', ArticleRoute.store);
 Router.patch('/articles/:articleId', ArticleRoute.update);
+Router.delete('/articles/:articleId', ArticleRoute.destroy);
 
 module.exports = Router;

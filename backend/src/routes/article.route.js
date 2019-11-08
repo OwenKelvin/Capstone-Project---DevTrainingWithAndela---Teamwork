@@ -37,6 +37,23 @@ const ArticleRoute = {
         done();
       });
   },
+  destroy(req, res, done) {
+    ArticleService.deleteArticle(req.params.articleId)
+      .then(() => {
+        const message = 'Article successfully deleted';
+        return res.status(202).send({
+          status: 'success',
+          data: { message },
+        });
+      })
+      .catch(err => {
+        const message = err;
+        return res.status(500).send({ status: false, data: { message } });
+      })
+      .finally(() => {
+        done();
+      });
+  },
 };
 
 module.exports = { ArticleRoute };
