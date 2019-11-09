@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "prestart": ".\\bin\\db.bat",
     "start": "node ./bin/www",
     "test": "jasmine",
     "migrate": "node-pg-migrate"
@@ -22,8 +21,10 @@
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
+    "cloudinary": "^1.16.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "env2": "^2.2.2",
     "express": "~4.16.1",
     "jasmine-node": "^3.0.0",
     "jwt-simple": "^0.5.6",
@@ -31,6 +32,8 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^2.0.1",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "mz": "^2.7.0",
     "pg": "^7.12.1",
     "pug": "^2.0.4",
     "request": "^2.88.0",
