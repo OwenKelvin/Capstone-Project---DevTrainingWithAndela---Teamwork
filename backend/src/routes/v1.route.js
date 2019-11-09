@@ -15,6 +15,7 @@ Router.post('/auth/create-user', AuthRoute.createUser);
 Router.post('/articles', ArticleRoute.store);
 Router.patch('/articles/:articleId', ArticleRoute.update);
 Router.delete('/articles/:articleId', ArticleRoute.destroy);
+Router.get('/articles/:articleId', ArticleRoute.show);
 
 // Article Comments
 Router.post('/articles/:articleId/comment', ArticleCommentRoute.store);

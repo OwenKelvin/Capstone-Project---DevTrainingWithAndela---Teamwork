@@ -54,6 +54,24 @@ const ArticleRoute = {
         done();
       });
   },
+  show(req, res, done) {
+    ArticleService.getArticleById(req.params.articleId)
+      .then(response => {
+        const message = 'Article successfully rethrieved';
+        const articleId = response.id;
+        return res.status(200).send({
+          status: 'success',
+          data: { articleId, message, ...response },
+        });
+      })
+      .catch(err => {
+        const message = err;
+        return res.status(500).send({ status: false, data: { message } });
+      })
+      .finally(() => {
+        done();
+      });
+  },
 };
 
 module.exports = { ArticleRoute };

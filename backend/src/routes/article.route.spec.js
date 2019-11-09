@@ -237,4 +237,74 @@ describe('ARTICLES ROUTE: ', () => {
       });
     });
   });
+  describe('GET /articles', () => {
+    let articleId;
+    describe('By an authenticated user', () => {
+      let token;
+      let userId;
+      beforeAll(done => {
+        const userData = {
+          firstName: `firtName${Math.random() * 100}`,
+          lastName: `lastName${Math.random() * 100}`,
+          email: `email${Math.random() * 1000}@gmail.com`,
+          password: String(Math.random()),
+          jobRole: 'employee',
+        };
+        UserService.createUser(userData).then(res => {
+          token = res;
+          token = AuthService.tokenForUSer({ id: res.id });
+          userId = res.id;
+          done();
+        });
+      });
+      beforeAll(done => {
+        ArticleService.createArticle(
+          { title: 'Some Title', article: 'article' },
+          userId,
+        ).then(response => {
+          articleId = response.id;
+          done();
+        });
+      });
+      const data = { data: null };
+      beforeAll(done => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        axios
+          .get(`${apiBase}/articles/${articleId}`, config)
+          .then(response => {
+            data.body = response.data;
+            data.status = response.status;
+          })
+          .finally(() => done());
+      });
+      it('should have a status code of 200', () => {
+        expect(data.status).toBe(200);
+      });
+      it('should return object with id', () => {
+        expect(data.body.data.id).toBeDefined();
+      });
+      it('should have a body with status as "success"', () => {
+        expect(data.body.status).toBe('success');
+      });
+    });
+    describe('By an Unauthenticated user', () => {
+      const data = { data: null };
+      beforeAll(done => {
+        axios
+          .get(`${apiBase}/articles/${articleId}`)
+          .then(response => {
+            data.status = response.status;
+          })
+          .catch(e => {
+            data.status = e.response.status;
+          })
+          .finally(() => done());
+      });
+      it('should retutn status code of 401 (Unauthoried)', () => {
+        expect(data.status).toBe(401);
+      });
+    });
+  });
 });
