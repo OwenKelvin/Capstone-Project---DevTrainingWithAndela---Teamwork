@@ -6,6 +6,7 @@ const { ArticleRoute } = require('./article.route');
 const { ArticleCommentRoute } = require('./article-comment.route');
 const { GifCommentRoute } = require('./gif-comment.route');
 const { GifRoute } = require('./gif.route');
+const { FeedRoute } = require('./feed.route');
 
 // Auth Routes
 Router.post('/auth/signin', AuthRoute.login);
@@ -27,5 +28,8 @@ Router.delete('/gifs/:gifId', GifRoute.destroy);
 
 // Gif Comments
 Router.post('/gifs/:gifId/comment', GifCommentRoute.store);
+
+// Feed
+Router.get('/feed', FeedRoute.index);
 
 module.exports = Router;
