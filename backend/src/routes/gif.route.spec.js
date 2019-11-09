@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 
 const axios = require('axios');
-const fs = require('mz/fs');
 const { apiBase } = require('../../config/env.config');
 const { UserService } = require('../services/user.service');
 const { AuthService } = require('../services/auth.service');

@@ -4,6 +4,7 @@ const Router = Express.Router();
 const { AuthRoute } = require('./auth.route');
 const { ArticleRoute } = require('./article.route');
 const { ArticleCommentRoute } = require('./article-comment.route');
+const { GifCommentRoute } = require('./gif-comment.route');
 const { GifRoute } = require('./gif.route');
 
 // Auth Routes
@@ -22,5 +23,8 @@ Router.post('/articles/:articleId/comment', ArticleCommentRoute.store);
 Router.post('/gifs', GifRoute.store);
 Router.patch('/gifs/:gifId', GifRoute.update);
 Router.delete('/gifs/:gifId', GifRoute.destroy);
+
+// Gif Comments
+Router.post('/gifs/:gifId/comment', GifCommentRoute.store);
 
 module.exports = Router;
