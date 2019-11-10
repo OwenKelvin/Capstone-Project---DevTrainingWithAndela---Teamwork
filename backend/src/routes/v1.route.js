@@ -8,6 +8,7 @@ const { GifCommentRoute } = require('./gif-comment.route');
 const { GifRoute } = require('./gif.route');
 const { TagRoute } = require('./tag.route');
 const { FeedRoute } = require('./feed.route');
+const { ArticleTagRoute } = require('./article-tag.route');
 
 // Auth Routes
 Router.post('/auth/signin', AuthRoute.login);
@@ -37,5 +38,8 @@ Router.get('/feed', FeedRoute.index);
 Router.post('/tags', TagRoute.store);
 Router.patch('/tags/:tagId', TagRoute.update);
 Router.delete('/tags/:tagId', TagRoute.destroy);
+
+// Article Tags
+Router.post('/articles/:articleId/tags', ArticleTagRoute.store);
 
 module.exports = Router;
