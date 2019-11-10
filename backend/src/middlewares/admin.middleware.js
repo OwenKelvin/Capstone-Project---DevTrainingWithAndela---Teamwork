@@ -5,8 +5,9 @@ const AdminMiddleware = (req, res, next) => {
   const createUser = req.path === '/api/v1/auth/create-user' && req.method === 'POST';
   const postTags = req.path === '/api/v1/tags' && req.method === 'POST';
   const patchTags = /^\/api\/v1\/tags/.test(String(req.path)) && req.method === 'PATCH';
+  const deleteTags = /^\/api\/v1\/tags/.test(String(req.path)) && req.method === 'DELETE';
 
-  if (createUser || postTags || patchTags) {
+  if (createUser || postTags || patchTags || deleteTags) {
     UserService.getUserById(req.auth.sub).then(user => {
       if (user.jobRole === 'admin') {
         return next();

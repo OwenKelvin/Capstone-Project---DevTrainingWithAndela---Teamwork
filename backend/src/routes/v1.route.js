@@ -36,5 +36,6 @@ Router.get('/feed', FeedRoute.index);
 // Tags
 Router.post('/tags', TagRoute.store);
 Router.patch('/tags/:tagId', TagRoute.update);
+Router.delete('/tags/:tagId', TagRoute.destroy);
 
 module.exports = Router;
