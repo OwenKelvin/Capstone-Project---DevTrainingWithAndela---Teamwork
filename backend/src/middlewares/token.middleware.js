@@ -2,7 +2,7 @@ const jwt = require('jwt-simple');
 const { PASSPORT_SECRET } = require('../../config/env.config');
 
 const TokenMiddleware = (req, res, next) => {
-  if (req.url === '/api/v1/auth/signin') {
+  if (req.url === '/api/v1/auth/signin' || req.url === '/favicon.ico') {
     return next();
   }
   let token = req.headers['x-access-token'] || req.headers.authorization || '';

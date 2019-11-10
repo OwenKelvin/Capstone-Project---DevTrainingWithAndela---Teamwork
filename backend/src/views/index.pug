@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        meta(name="Description", content="Training: DevCTraining, API endpoints for teamwork, Author: Owen Kelvin")
+        
+        title #{ title }
+    body
+        header
+            h1 #{ heading }
+        main 
+            article
+                h2 Summary
+                p #{ summary }
+                h2 Development
+                p Source code can be found at <a href="https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork"> https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork</a>
+                h2 Usage 
+                p each api endpoint is concatenated with 'api/v1/' e.g to get all feeds 
+                p GET http://localhost:3000/api/v1/feed
+            article
+                h2 API Endpoints
+                section
+                    h3 AUTH APIs
+                    h4 <code> POST /auth/signin</code>
+                    p body
+                    ul  
+                        li email (required)
+                        li password (required)
+                    h4 <code> POST /auth/create-user</code>
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    p body
+                    ul  
+                        li firstName (required)
+                        li lastName (required)
+                        li email (required)
+                        li password (optional - default password is password)
+                        li address (optional)
+                        li jobRole (optional - can be 'admin/employee')
+                        li gender (optional - can be 'M/feed')
+                    h3 ARTICLES APIs
+                    h4 <code> POST /articles</code>
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    p body
+                        ul
+                            li title
+                            li article
+                    h4 <code> PATCH /articles/:articleId
+                    p edit details of a specific article
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    p body
+                        ul
+                            li title
+                            li article
+                    h4 <code> DELETE /articles/:articleId
+                    p delete a specific article
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    h4 <code> GET /articles/:articleId
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    h3 GIF APIs
+                    h4 <code> POST /gifs </code>
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    p body
+                        ul
+                            li title
+                    h4 <code> DELETE /gifs/:gifId </code>
+                    p delete a specific gif
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'
+                    p body
+                        ul
+                            li title
+                    h4 <code> GET /feed </code>
+                    p Get articles/ gif starting with latest
+                    p headers
+                        ul
+                            li Authorization: 'Bearer xxxxxxxxxxx'     
+        footer
+            p Developed by #{ author }
