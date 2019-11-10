@@ -2,7 +2,9 @@ const { UserService } = require('../services/user.service');
 
 // eslint-disable-next-line consistent-return
 const AdminMiddleware = (req, res, next) => {
-  if (req.path === '/api/v1/auth/create-user') {
+  const createUser = req.path === '/api/v1/auth/create-user' && req.method === 'POST';
+  const postTags = req.path === '/api/v1/tags' && req.method === 'POST';
+  if (createUser || postTags) {
     UserService.getUserById(req.auth.sub).then(user => {
       if (user.jobRole === 'admin') {
         return next();

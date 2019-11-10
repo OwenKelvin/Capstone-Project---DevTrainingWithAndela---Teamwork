@@ -3,3 +3,4 @@ node_modules
 src/uploads
 spec/test-image
 /coverage
+.nyc_output
