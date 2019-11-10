@@ -1,6 +1,24 @@
 const { TagService } = require('../services/tag.service');
 
 const TagRoute = {
+  index(req, res, done) {
+    TagService.getTags(req.body)
+      .then(response => {
+        const message = 'Tag successfully retrieved';
+        return res.status(200).send({
+          status: 'success',
+          message,
+          data: response,
+        });
+      })
+      .catch(err => {
+        const message = err;
+        return res.status(500).send({ status: false, data: { message } });
+      })
+      .finally(() => {
+        done();
+      });
+  },
   store(req, res, done) {
     TagService.createTag(req.body)
       .then(response => {

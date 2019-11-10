@@ -273,4 +273,77 @@ describe('TAGS ROUTE: ', () => {
       });
     });
   });
+  describe('GET /tags', () => {
+    describe('by an admin/ employee', () => {
+      let token;
+      const data = {};
+      beforeAll(done => {
+        const tagData = {
+          name: `tagName${Math.random() * 100}`,
+        };
+        TagService.createTag(tagData)
+          .then(() => {})
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const userData = {
+          firstName: `firtName${Math.random() * 100}`,
+          lastName: `lastName${Math.random() * 100}`,
+          email: `email${Math.random() * 1000}@gmail.com`,
+          password: String(Math.random()),
+          jobRole: 'admin',
+        };
+        UserService.createUser(userData)
+          .then(res => {
+            token = res;
+            token = AuthService.tokenForUSer({ id: res.id });
+            userId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        Axios.get(`${apiBase}/tags`, config)
+          .then(response => {
+            data.body = response.data;
+            data.status = response.status;
+          })
+          .finally(() => done());
+      });
+
+      it('should return status code 200', () => {
+        expect(data.status).toBe(200);
+      });
+      it('should have at least 1 tag', () => {
+        expect(data.body.data[0].id).toBeDefined();
+        expect(data.body.data[0].name).toBeDefined();
+      });
+    });
+    describe('by a non authenticated user', () => {
+      const data = {};
+      beforeAll(done => {
+        const tagData = {
+          name: `tagName${Math.random() * 100}`,
+        };
+        TagService.createTag(tagData)
+          .then(res => {
+            tagId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        Axios.get(`${apiBase}/tags`)
+          .catch(e => {
+            data.status = e.response.status;
+          })
+          .finally(() => done());
+      });
+
+      it('should return status code 401', () => {
+        expect(data.status).toBe(401);
+      });
+    });
+  });
 });

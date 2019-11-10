@@ -78,6 +78,27 @@ const TagService = {
       });
     });
   },
+  async getTags() {
+    return new Promise((resolve, reject) => {
+      const text = 'SELECT * FROM tags';
+      pool.connect((err, client, done) => {
+        if (err) {
+          reject();
+        }
+        client
+          .query(text)
+          .then(response => {
+            resolve(response.rows);
+          })
+          .catch(err1 => {
+            reject(err1);
+          })
+          .finally(() => {
+            done();
+          });
+      });
+    });
+  },
 };
 
 module.exports = { TagService };
