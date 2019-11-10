@@ -1,8 +1,8 @@
+/* eslint-disable arrow-body-style */
 const Express = require('express');
 
 const IndexRouter = Express.Router();
 
-/* GET home page. */
 // eslint-disable-next-line no-unused-vars
 IndexRouter.get('/', (req, res, next) => {
   return res.status(200).render('index.pug', {
