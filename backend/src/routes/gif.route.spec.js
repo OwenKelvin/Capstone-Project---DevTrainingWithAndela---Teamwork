@@ -205,7 +205,7 @@ describe('ARTICLES ROUTE: ', () => {
     });
     describe('By an Unauthenticated user', () => {
       beforeAll(done => {
-        GifService.createGif({ title: 'Some Title', gif: 'gif' }, userId).then(
+        GifService.createGif({ title: 'Some Title' }, userId).then(
           response => {
             gifId = response.id;
             done();

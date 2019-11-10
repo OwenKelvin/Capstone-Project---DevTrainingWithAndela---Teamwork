@@ -66,6 +66,7 @@ const GifService = {
         client
           .query(text, values)
           .then(() => {
+            // TODO remove from cloudinary
             resolve();
           })
           .catch(err1 => {
