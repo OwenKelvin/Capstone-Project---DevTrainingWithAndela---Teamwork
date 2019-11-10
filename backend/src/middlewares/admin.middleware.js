@@ -4,7 +4,9 @@ const { UserService } = require('../services/user.service');
 const AdminMiddleware = (req, res, next) => {
   const createUser = req.path === '/api/v1/auth/create-user' && req.method === 'POST';
   const postTags = req.path === '/api/v1/tags' && req.method === 'POST';
-  if (createUser || postTags) {
+  const patchTags = /^\/api\/v1\/tags/.test(String(req.path)) && req.method === 'PATCH';
+
+  if (createUser || postTags || patchTags) {
     UserService.getUserById(req.auth.sub).then(user => {
       if (user.jobRole === 'admin') {
         return next();
