@@ -37,6 +37,24 @@ const TagRoute = {
         done();
       });
   },
+  destroy(req, res, done) {
+    TagService.deleteTag(req.params.tagId)
+      .then(response => {
+        const message = 'Tag successfully deleted';
+        const tagId = response.id;
+        return res.status(202).send({
+          status: 'success',
+          data: { tagId, message },
+        });
+      })
+      .catch(err => {
+        const message = err;
+        return res.status(500).send({ status: false, data: { message } });
+      })
+      .finally(() => {
+        done();
+      });
+  },
 };
 
 module.exports = { TagRoute };

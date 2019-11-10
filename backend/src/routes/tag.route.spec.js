@@ -180,4 +180,97 @@ describe('TAGS ROUTE: ', () => {
       });
     });
   });
+  describe('DELETE /tags', () => {
+    describe('by an admin', () => {
+      let token;
+      const data = {};
+      let tagId;
+      beforeAll(done => {
+        const tagData = {
+          name: `tagName${Math.random() * 100}`,
+        };
+        TagService.createTag(tagData)
+          .then(res => {
+            tagId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const userData = {
+          firstName: `firtName${Math.random() * 100}`,
+          lastName: `lastName${Math.random() * 100}`,
+          email: `email${Math.random() * 1000}@gmail.com`,
+          password: String(Math.random()),
+          jobRole: 'admin',
+        };
+        UserService.createUser(userData)
+          .then(res => {
+            token = res;
+            token = AuthService.tokenForUSer({ id: res.id });
+            userId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        Axios.delete(`${apiBase}/tags/${tagId}`, config)
+          .then(response => {
+            data.body = response.data;
+            data.status = response.status;
+          })
+          .finally(() => done());
+      });
+
+      it('should return status code 202', () => {
+        expect(data.status).toBe(202);
+      });
+    });
+    describe('by a non admin', () => {
+      let token;
+      const data = {};
+      let tagId;
+      beforeAll(done => {
+        const tagData = {
+          name: `tagName${Math.random() * 100}`,
+        };
+        TagService.createTag(tagData)
+          .then(res => {
+            tagId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const userData = {
+          firstName: `firtName${Math.random() * 100}`,
+          lastName: `lastName${Math.random() * 100}`,
+          email: `email${Math.random() * 1000}@gmail.com`,
+          password: String(Math.random()),
+          jobRole: 'employee',
+        };
+        UserService.createUser(userData)
+          .then(res => {
+            token = res;
+            token = AuthService.tokenForUSer({ id: res.id });
+            userId = res.id;
+          })
+          .finally(() => done());
+      });
+      beforeAll(done => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        Axios.delete(`${apiBase}/tags/${tagId}`, config)
+          .catch(e => {
+            data.status = e.response.status;
+          })
+          .finally(() => done());
+      });
+
+      it('should return status code 202', () => {
+        expect(data.status).toBe(401);
+      });
+    });
+  });
 });
