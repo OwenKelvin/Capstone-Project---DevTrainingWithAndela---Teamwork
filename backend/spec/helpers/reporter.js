@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { SpecReporter } = require('jasmine-spec-reporter');
 // const jasmine = require('jasmine');
 
