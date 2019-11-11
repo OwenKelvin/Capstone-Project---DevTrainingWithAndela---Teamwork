@@ -29,6 +29,29 @@ const ArticleTagService = {
       });
     });
   },
+  async deleteArticleTag(data) {
+    const { articleId, tagId } = data;
+    const values = [articleId, tagId];
+    return new Promise((resolve, reject) => {
+      const text = 'DELETE FROM article_tag WHERE "articleId"=$1 and "tagId"=$2';
+      pool.connect((err, client, done) => {
+        if (err) {
+          reject();
+        }
+        client
+          .query(text, values)
+          .then(() => {
+            resolve();
+          })
+          .catch(err1 => {
+            reject(err1);
+          })
+          .finally(() => {
+            done();
+          });
+      });
+    });
+  },
 };
 
 module.exports = { ArticleTagService };

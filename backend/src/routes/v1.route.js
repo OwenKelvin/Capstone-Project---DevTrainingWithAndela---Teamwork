@@ -41,5 +41,6 @@ Router.delete('/tags/:tagId', TagRoute.destroy);
 
 // Article Tags
 Router.post('/articles/:articleId/tags', ArticleTagRoute.store);
+Router.delete('/articles/:articleId/tags/:tagId', ArticleTagRoute.destroy);
 
 module.exports = Router;
