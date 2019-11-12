@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork.svg?branch=develop)](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork)
 
+[![Coverage Status](https://coveralls.io/repos/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend/badge.svg?branch=master)](https://coveralls.io/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend?branch=master)
+
 ## About
 
 Teamwork is an internal social network for employees of an organization. This application is meant to facilitate interaction between colleagues and promote bonding
