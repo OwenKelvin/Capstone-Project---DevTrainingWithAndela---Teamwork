@@ -1,6 +1,6 @@
 # Capstone Project - DevCTraining with Andela - Teamwork backend
 
-[![Build Status](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork.svg?branch=master)](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork)
+[![Build Status](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork.svg?branch=master)](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork) [![Test Coverage](https://api.codeclimate.com/v1/badges/05980f88a970638bb9da/test_coverage)](https://codeclimate.com/github/OwenKelvin/capstone-project-dev-training_with-andela-frontend/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/05980f88a970638bb9da/maintainability)](https://codeclimate.com/github/OwenKelvin/capstone-project-dev-training_with-andela-frontend/maintainability)
 
 This is our high-quality team API. You can use this API to request edit and delete articles and gifs for the teamwork app
 
