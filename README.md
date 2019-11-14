@@ -33,7 +33,7 @@ The project has been managed using Povotal tracket at
 
 ## Backend Fuctionality
 
-Please find the [documentation](https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend) for the backend [here]([documentation](https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend)) 
+Please find the [documentation](https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork/tree/master/backend) for the backend [here](https://github.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork/tree/master/backen) 
 A live preview is also available on [https://capstone-project-teamwork.herokuapp.com](https://capstone-project-teamwork.herokuapp.com)
 
 ## Frontend
