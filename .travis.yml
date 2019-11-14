@@ -6,6 +6,7 @@ node_js:
   - "12.6.0"
 
 before_script:
+  - cd backend
   - npm install
   - npm install nyc -g
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -16,5 +17,5 @@ after_script:
   - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
   
 script:
-  cd backend
+  
   npm start
