@@ -16,10 +16,6 @@ before_script:
   - psql -c "CREATE DATABASE teamwork;" -U postgres
   - psql -c "CREATE USER root WITH PASSWORD 'password';" -U postgres
   - npm run migrate up
-
+  - copy coverage ../coverage
 after_script:
   - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
-  
-script:
-  
-  npm start
