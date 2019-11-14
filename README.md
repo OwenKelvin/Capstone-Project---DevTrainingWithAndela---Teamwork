@@ -1,8 +1,6 @@
 # Capstone-Project---DevTrainingWithAndela---Teamwork
 
-[![Build Status](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork.svg?branch=develop)](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork)
-
-[![Coverage Status](https://coveralls.io/repos/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend/badge.svg?branch=master)](https://coveralls.io/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork-backend?branch=master)
+[![Build Status](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork.svg?branch=develop)](https://travis-ci.com/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork) [![Coverage Status](https://coveralls.io/repos/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork/badge.svg?branch=master)](https://coveralls.io/github/OwenKelvin/Capstone-Project---DevTrainingWithAndela---Teamwork?branch=master)
 
 ## About
 
