@@ -1,8 +1,10 @@
 require('env2')('.env');
-const express = require( 'express' );
+const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+const cors = require('cors');
 
 const v1Router = require('./routes/v1.route');
 
@@ -10,7 +12,7 @@ const { TokenMiddleware } = require('./middlewares/token.middleware');
 const { AdminMiddleware } = require('./middlewares/admin.middleware');
 
 const app = express();
-
+app.use(cors());
 const indexRouter = require('./routes/index.route');
 
 // view engine setup
