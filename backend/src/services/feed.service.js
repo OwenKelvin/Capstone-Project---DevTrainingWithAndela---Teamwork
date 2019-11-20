@@ -4,7 +4,7 @@ const FeedService = {
   async getFeeds() {
     return new Promise((resolve, reject) => {
       const text = `SELECT 
-                        id as "articleId", NULL AS gifId, title, article, NULL as url, "createdAt" as "createdOn"
+                        id as "articleId", NULL AS "gifId", title, article, NULL as url, "createdAt" as "createdOn"
                         FROM articles
                     UNION
                     SELECT
