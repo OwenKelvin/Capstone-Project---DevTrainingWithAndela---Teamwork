@@ -71,13 +71,15 @@ describe('TAGS ROUTE: ', () => {
           name: `newTag${Math.random() * 10000}`,
         };
         Axios.post(`${apiBase}/tags`, postData, config).catch(e => {
-          data.status = e.response.status;
+          if (e.response && e.response.status) {
+             data.status = e.response.status;
+          }
           done();
         });
       });
 
       it('should return status code 401', () => {
-        // expect(data.status).toBe(401);
+        expect(data.status).toBe(401);
       });
     });
   });
