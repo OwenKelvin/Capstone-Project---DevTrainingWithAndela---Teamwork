@@ -9,14 +9,14 @@ services:
 before_script:
   - cd backend
   - npm install
-  - npm start
-  - npm install nyc -g
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
   - psql -c "CREATE DATABASE teamwork;" -U postgres
   - psql -c "CREATE USER root WITH PASSWORD 'password';" -U postgres
   - npm run migrate up
+  - npm install nyc -g
+  - npm start
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
   
 after_script:
   - ./cc-test-reporter after-build -t lcov --exit-code $TRAVIS_TEST_RESULT
