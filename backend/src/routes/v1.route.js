@@ -13,6 +13,7 @@ const { ArticleTagRoute } = require('./article-tag.route');
 // Auth Routes
 Router.post('/auth/signin', AuthRoute.login);
 Router.post('/auth/create-user', AuthRoute.createUser);
+Router.get('/auth/user', AuthRoute.user);
 
 // Articles Routes
 Router.post('/articles', ArticleRoute.store);

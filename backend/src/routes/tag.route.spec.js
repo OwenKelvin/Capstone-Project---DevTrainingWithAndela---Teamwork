@@ -24,6 +24,7 @@ describe('TAGS ROUTE: ', () => {
             token = AuthService.tokenForUSer({ id: res.id });
             userId = res.id;
           })
+          .catch(() => { })
           .finally(() => done());
       });
       beforeAll(done => {
@@ -38,6 +39,7 @@ describe('TAGS ROUTE: ', () => {
             data.body = response.data;
             data.status = response.status;
           })
+          .catch(() => {})
           .finally(() => done());
       });
 
@@ -60,6 +62,9 @@ describe('TAGS ROUTE: ', () => {
           token = res;
           token = AuthService.tokenForUSer({ id: res.id });
           userId = res.id;
+        })
+        .catch(() => { })
+        .finally(() => {
           done();
         });
       });

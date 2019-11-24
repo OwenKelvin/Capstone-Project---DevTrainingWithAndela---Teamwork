@@ -14,7 +14,7 @@ describe('AUTH ROUTE: ', () => {
       firstName: 'firstName',
       lastName: 'lastName',
       jobRole: 'admin',
-      password,
+      password
     };
     password = 'password';
     UserService.createUser(adminUserData)
@@ -28,7 +28,7 @@ describe('AUTH ROUTE: ', () => {
     const data = {};
     const postData = {
       email: adminEmail,
-      password,
+      password
     };
 
     beforeEach(done => {
@@ -44,7 +44,7 @@ describe('AUTH ROUTE: ', () => {
     it('should have a status code of 200', () => {
       expect(data.status).toBe(200);
     });
-    it("should have a body with status of 'success'", () => {
+    it('should have a body with status of "success"', () => {
       expect(data.body.status).toBe('success');
     });
     it('should have a body with token', () => {
@@ -68,7 +68,7 @@ describe('AUTH ROUTE: ', () => {
           lastName: `lastName${Math.random() * 100}`,
           email,
           password: userPassword,
-          jobRole: 'admin',
+          jobRole: 'admin'
         };
         UserService.createUser(data).then(res => {
           token = res;
@@ -80,7 +80,7 @@ describe('AUTH ROUTE: ', () => {
       const employeeEmail = `employee${Date.now()}@gmail.com`;
       beforeAll(done => {
         const config = {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         };
 
         const postData = {
@@ -88,7 +88,7 @@ describe('AUTH ROUTE: ', () => {
           firstName: 'firstName',
           lastName: 'lastName',
           jobRole: 'employee',
-          password,
+          password
         };
         axios
           .post(`${apiBase}/auth/create-user`, postData, config)
@@ -121,7 +121,7 @@ describe('AUTH ROUTE: ', () => {
           lastName: `lastName${Math.random() * 100}`,
           email,
           password: userPassword,
-          jobRole: 'employee',
+          jobRole: 'employee'
         };
         UserService.createUser(data).then(res => {
           token = res;
@@ -133,7 +133,7 @@ describe('AUTH ROUTE: ', () => {
       const employeeEmail = `employee${Date.now()}@gmail.com`;
       beforeAll(done => {
         const config = {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         };
 
         const postData = {
@@ -141,7 +141,7 @@ describe('AUTH ROUTE: ', () => {
           firstName: 'firstName',
           lastName: 'lastName',
           jobRole: 'employee',
-          password,
+          password
         };
         axios
           .post(`${apiBase}/auth/create-user`, postData, config)
@@ -155,6 +155,55 @@ describe('AUTH ROUTE: ', () => {
       });
       it('should have a status code of 401', () => {
         expect(data.status).toBe(401);
+      });
+    });
+  });
+  describe('GET /auth/user', () => {
+    let token;
+    describe('By an authenticated user', () => {
+      const userPassword = String(Math.random());
+      const email = `email${Math.random() * 1000}@gmail.com`;
+      beforeAll(done => {
+        const data = {
+          firstName: `firtName${Math.random() * 100}`,
+          lastName: `lastName${Math.random() * 100}`,
+          email,
+          password: userPassword,
+          jobRole: 'admin'
+        };
+        UserService.createUser(data).then(res => {
+          token = res;
+          token = AuthService.tokenForUSer({ id: res.id });
+          done();
+        });
+      });
+      const data = {};
+      beforeAll(done => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` }
+        };
+        axios
+          .get(`${apiBase}/auth/user`, config)
+          .then(response => {
+            data.body = response.data;
+            data.status = response.status;
+          })
+          .catch(e => {
+            // console.log(e);
+          })
+          .finally(() => done());
+      });
+      it('should have a status code of 200', () => {
+        expect(data.status).toBe(200);
+      });
+      it('should return object with id', () => {
+        expect(data.body.data.id).toBeDefined();
+      });
+      it('should return object with isAdmin property', () => {
+        expect(data.body.data.isAdmin).toBeDefined();
+      });
+      it('should have a body with status as "success"', () => {
+        expect(data.body.status).toBe('success');
       });
     });
   });
