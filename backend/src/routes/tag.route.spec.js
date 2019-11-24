@@ -39,6 +39,7 @@ describe('TAGS ROUTE: ', () => {
             data.body = response.data;
             data.status = response.status;
           })
+          .catch(() => {})
           .finally(() => done());
       });
 
