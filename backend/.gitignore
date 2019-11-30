@@ -4,3 +4,4 @@ src/uploads
 spec/test-image
 /coverage
 .nyc_output
+.env
